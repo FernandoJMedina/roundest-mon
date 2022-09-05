@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import { useState } from "react";
 import { getOptionsForVote } from "utils/getRandomPokemon";
 import { trpc } from "utils/trpc";
@@ -19,22 +20,33 @@ const Home: NextPage = () => {
       <div className="p-2" />
       <div className="border rounded p-8 flex justify-between max-w-2xl items-center capitalize">
         <div className="w-64 h-64 flex flex-col">
-          <img
-            src={firstPokemon.data?.sprites.front_default}
-            alt={firstPokemon.data?.name}
-            className="w-full"
-          />
+          {firstPokemon.data && (
+            <Image
+              src={firstPokemon.data?.sprites.front_default!}
+              alt={firstPokemon.data?.name}
+              layout="responsive"
+              width={64}
+              height={64}
+              className="w-full"
+            />
+          )}
           <div className="text-center mt-[-2rem]">
             {firstPokemon.data?.name}
           </div>
         </div>
         <div className="p-8">VS</div>
         <div className="w-64 h-64 flex flex-col">
-          <img
-            src={secondPokemon.data?.sprites.front_default}
-            alt={secondPokemon.data?.name}
-            className="w-full"
-          />
+          {secondPokemon.data && (
+            <Image
+              src={secondPokemon.data?.sprites.front_default!}
+              alt={secondPokemon.data?.name}
+              layout="responsive"
+              width={64}
+              height={64}
+              className="w-full"
+            />
+          )}
+
           <div className="text-center mt-[-2rem]">
             {secondPokemon.data?.name}
           </div>
