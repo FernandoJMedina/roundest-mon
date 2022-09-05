@@ -11,18 +11,9 @@ export const getRandomPokemon: (notThisOne?: number) => number = (
   return getRandomPokemon(notThisOne);
 };
 
-export const useGetOptionsForVote = () => {
-  const [firstId, setFirst] = useState<number>();
-
-  const [secondId, setSecond] = useState<number>();
-
-  useEffect(() => {
-    setFirst(getRandomPokemon());
-  }, []);
-
-  useEffect(() => {
-    setSecond(getRandomPokemon(firstId));
-  }, [firstId]);
+export const getOptionsForVote = () => {
+  const firstId = getRandomPokemon();
+  const secondId = getRandomPokemon(firstId);
 
   return [firstId, secondId];
 };
